@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="Website_style.css"/>
+        <style>
+            body{
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                background: linear-gradient(135deg, #E5FFCC 0%, #FFFF99 100%);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-family: 'Comic Sans MS', cursive, sans-serif;
+            }
+            .login-container{
+                background: #B6E67D;
+      border-radius: 25px;
+      box-shadow: 0 8px 32px rgba(85, 150, 29, 0.18);
+      padding: 38px 32px;
+      width: 320px;
+      text-align: center;
+    }
+    .login-title {
+      font-size: 2.3em;
+      color: #FFD700;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-shadow: 1px 2px 0px #9CE359;
+      letter-spacing: 1px;
+    }
+    .login-input {
+      width: 80%;
+      padding: 12px;
+      margin: 14px 0;
+      border: none;
+      border-radius: 16px;
+      outline: none;
+      background: #FFFFCD;
+      font-size: 1.17em;
+      color: #5f7300;
+      box-shadow: 0 2px 10px #e5ffcc5c;
+      transition: background .2s;
+    }
+    .login-input:focus {
+      background: #FFFDA6;
+    }
+    .login-btn {
+      width: 90%;
+      padding: 10px 0;
+      border: none;
+      border-radius: 20px;
+      background: linear-gradient(90deg, #9CE359, #FFD700);
+      color: #226717;
+      font-size: 1.25em;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 18px;
+      margin-bottom: 8px;
+      transition: background .2s;
+      box-shadow: 0 2px 24px #e5ffcc5c;
+    }
+    .login-btn:hover {
+      background: linear-gradient(90deg, #FFD700, #9CE359);
+      color: #3a7a03;
+    }
+    .cute-face {
+      font-size: 2em;
+      margin: 0px -10px 12px 0px;
+      display: inline-block;
+      animation: bounce 1s infinite alternate;
+    }
+    @keyframes bounce {
+      to { transform: translateY(-12px) scale(1.07); }
+      from { transform: none; }
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+      color: #3d3d12;
+      font-size: 1em;
+      text-align: left;
+ }
+        </style>
+</head>
+<body>
+        <div class="login-container">
+            <div class="cute-face">(●'◡'●)</div>
+            <div class="login-title">Login</div>
+            <form id="loginform">
+                <label for="username">Username</label>
+                <input class="login-input" type="text" id="username" name="username" required autocomplete="off" />
+                <label for="password">Password</label>
+                <input class="login-input" type="password" id="password" name="password" required autocomplete="off" />
+                <button class="login-btn" type="submit">Masuk!</button>
+            </form>
+        </div>
+    <script>
+        document.getElementById('Loginform').addEventListener('submit', function(e) {
+            e.preventDefault()
+            // Simulasi: setelah logim, langsung ke halaman web.html
+            window.location.href = "web.html";
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Playground - Game</title>
+  <link rel="stylesheet" href="HalamanGame.css"/>
+        <style>
+    .game-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .game-blocks {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      justify-content: center;
+      width: 100%;
+    }
+    .game-block {
+      background: linear-gradient(135deg, #bdffce 0%, #fffed9 100%);
+      border-radius: 26px;
+      box-shadow: 0 6px 38px #a3e58536;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 310px;
+      padding: 36px 16px 30px 16px;
+      transition: transform .22s cubic-bezier(.43,.06,.34,1.1), box-shadow .22s;
+      cursor: pointer;
+    }
+    .game-block:hover {
+      transform: scale(1.075);
+      box-shadow: 0 12px 44px #8fd17038;
+      background: linear-gradient(135deg, #98ffb3 0%, #fffacd 100%);
+    }
+    .game-title {
+      font-size: 1.45em;
+      font-weight: bold;
+      color: #228B22;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-shadow: 1px 2px #ffd800;
+    }
+    .game-desc {
+      font-size: 1.08em;
+      color: #206610;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .game-btn {
+      background: linear-gradient(90deg,#bfffa8 0,#ffd800 100%);
+      color: #228B22;
+      border: none;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 1.03em;
+      padding: 9px 32px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #e5ffcc8d;
+      transition: background .21s, color .19s;
+      text-decoration: none;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+    .game-btn:hover {
+      background: linear-gradient(90deg,#ffd800 0,#bfffa8 100%);
+      color: #1e6c19;
+    }
+    @media (max-width: 900px) {
+      .game-blocks { gap: 22px; }
+      .game-block{ width: 85vw;}
+      .game-content{padding: 21px 5px;}
+    }
+    @media (max-width: 650px){
+      .game-blocks{flex-direction:column;align-items:center;}
+      .game-block{ width: 96vw;}
+    }
+        </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <span class="navbar-title" onclick="window.location.href='index.html'">Game Playground</span>
+    <div class="navbar-menu">
+      <button class="menu-btn" id="menuBtn">&#9776;</button>
+    </div>
+  </nav>
+  <!-- Sidebar Menu -->
+  <aside class="side-menu" id="sideMenu">
+    <button class="close-btn" id="closeMenu">&times;</button>
+    <ul>
+      <li onclick="window.location.href='index.html'">Profil Developer</li>
+      <li onclick="window.location.href='game.html'">Game</li>
+      <li onclick="window.location.href='galeri.html'">Galeri Game</li>
+    </ul>
+  </aside>
+
+  <main class="game-content">
+    <h2 style="color: #228B22; font-size: 2em; letter-spacing: 1px;
+        text-shadow: 1px 2px #ffd800; text-align: center;">Game Buatan Kami</h2>
+    <div class="game-blocks">
+      <!-- Game 1 -->
+      <div class="game-block">
+        <div class="game-title">Menangkap Apel</div>
+        <div class="game-desc">Ini adalah Game Buatan Kami, Selamat Bersenang-senang! Tangkap apel sebanyak mungkin dan dapatkan skor tertinggi!</div>
+        <a class="game-btn" href="https://link-game-apel.com" target="_blank">Mainkan Game</a>
+      </div>
+      <!-- Game 2 -->
+      <div class="game-block">
+        <div class="game-title">Tebak Kata</div>
+        <div class="game-desc">Ini adalah Game Buatan Kami, Selamat Bersenang-senang! Tebak setiap kata dengan petunjuk yang diberikan, raih skor tertinggi!</div>
+        <a class="game-btn" href="https://link-game-tebakkata.com" target="_blank">Mainkan Game</a>
+      </div>
+      <!-- Game 3 -->
+      <div class="game-block">
+        <div class="game-title">Lari Cepat</div>
+        <div class="game-desc">Ini adalah Game Buatan Kami, Selamat Bersenang-senang! Bantu karakter berlari dan hindari rintangan sebanyak mungkin!</div>
+        <a class="game-btn" href="https://link-game-laricepat.com" target="_blank">Mainkan Game</a>
+      </div>
+    </div>
+  </main>
+  <script>
+    // Navbar Menu
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    menuBtn.onclick = () => sideMenu.classList.add('open');
+    closeMenu.onclick = () => sideMenu.classList.remove('open');
+    window.onclick = (e) => {
+      if(e.target.classList.contains('side-menu')) sideMenu.classList.remove('open');
+    }
+  </script>
+</body>
+</html>
