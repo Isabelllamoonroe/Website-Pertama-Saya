@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="Login.css"/>
-        <style>
-            body{
+body{
                 margin: 0;
                 padding: 0;
                 min-height: 100vh;
@@ -85,26 +77,3 @@
       font-size: 1em;
       text-align: left;
  }
-        </style>
-</head>
-<body>
-        <div class="login-container">
-            <div class="cute-face">(●'◡'●)</div>
-            <div class="login-title">Login</div>
-            <form id="loginform">
-                <label for="username">Username</label>
-                <input class="login-input" type="text" id="username" name="username" required autocomplete="off" />
-                <label for="password">Password</label>
-                <input class="login-input" type="password" id="password" name="password" required autocomplete="off" />
-                <button class="login-btn" type="submit">Masuk!</button>
-            </form>
-        </div>
-    <script>
-        document.getElementById('Loginform').addEventListener('submit', function(e) {
-            e.preventDefault()
-            // Simulasi: setelah logim, langsung ke halaman web.html
-            window.location.href = "LoginWebsite.html";
-        });
-    </script>
-</body>
-</html>

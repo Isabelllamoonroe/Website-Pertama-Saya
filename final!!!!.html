@@ -4,9 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Game Playground</title>
-  <link rel="stylesheet" href="Website_style.css"/>
-  
-    <style>
+  <style>
+  /* Gabungan Style Developer dan Game */
   @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
   body {
     margin: 0;
@@ -14,7 +13,7 @@
     min-height: 100vh;
     background: linear-gradient(135deg, #d5ffdb 0%, #ffffd2 40%, #fffde4 75%, #fff98d 100%);
   }
-  /* Navbar Sticky */
+  /* Navbar */
   .navbar {
     position: sticky;
     top: 0;
@@ -68,9 +67,7 @@
     flex-direction: column;
     padding: 42px 18px;
   }
-  .side-menu.open {
-    transform: translateX(0);
-  }
+  .side-menu.open { transform: translateX(0);}
   .side-menu .close-btn {
     font-size: 1.7em;
     color: #228B22;
@@ -80,11 +77,7 @@
     background: none;
     cursor: pointer;
   }
-  .side-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
+  .side-menu ul {list-style:none;padding:0;margin:0;}
   .side-menu li {
     margin-bottom: 33px;
     font-size: 1.21em;
@@ -94,10 +87,7 @@
     transition: color .19s;
     letter-spacing: .5px;
   }
-  .side-menu li:hover {
-    color: #ffd800;
-  }
-
+  .side-menu li:hover {color: #ffd800;}
   /* Section Developer */
   .main-content {
     margin: 0 auto;
@@ -186,9 +176,7 @@
     align-items: center;
     justify-content: center;
   }
-  .dev-modal-bg.show {
-    display: flex;
-  }
+  .dev-modal-bg.show { display: flex; }
   .dev-modal {
     background: linear-gradient(135deg, #e5ffcc 0%, #fffacd 100%);
     border-radius: 24px;
@@ -199,10 +187,7 @@
     position: relative;
     animation: popIn .35s cubic-bezier(.43,.06,.34,1.2);
   }
-  @keyframes popIn {
-    0% {transform: scale(.7);}
-    100% {transform: scale(1);}
-  }
+  @keyframes popIn {0%{transform:scale(.7);}100%{transform:scale(1);}}
   .dev-modal .close-modal {
     position: absolute;
     top: 12px;
@@ -214,17 +199,8 @@
     cursor: pointer;
     z-index: 2;
   }
-  .biodata-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    font-size: 1.15em;
-    color: #1e6c19;
-  }
-  .biodata-list li {
-    margin-bottom: 13px;
-    padding-left: 4px;
-  }
+  .biodata-list {margin:0;padding:0;list-style:none;font-size:1.15em;color:#1e6c19;}
+  .biodata-list li {margin-bottom:13px;padding-left:4px;}
   .dev-modal-photo {
     border-radius: 50%;
     border: 5px solid #bfffa8;
@@ -236,14 +212,83 @@
     display: block;
     margin: 0 auto 16px auto;
   }
+  /* Section Game */
+  .game-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 18px 18px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;
+  }
+  .game-blocks {
+    display: flex;
+    gap: 36px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+    justify-content: center;
+    width: 100%;
+  }
+  .game-block {
+    background: linear-gradient(135deg, #bdffce 0%, #fffed9 100%);
+    border-radius: 26px;
+    box-shadow: 0 6px 38px #a3e58536;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 310px;
+    padding: 36px 16px 30px 16px;
+    transition: transform .22s cubic-bezier(.43,.06,.34,1.1), box-shadow .22s;
+    cursor: pointer;
+  }
+  .game-block:hover {
+    transform: scale(1.075);
+    box-shadow: 0 12px 44px #8fd17038;
+    background: linear-gradient(135deg, #98ffb3 0%, #fffacd 100%);
+  }
+  .game-title {
+    font-size: 1.45em;
+    font-weight: bold;
+    color: #228B22;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px #ffd800;
+  }
+  .game-desc {
+    font-size: 1.08em;
+    color: #206610;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .game-btn {
+    background: linear-gradient(90deg,#bfffa8 0,#ffd800 100%);
+    color: #228B22;
+    border: none;
+    border-radius: 18px;
+    font-weight: bold;
+    font-size: 1.03em;
+    padding: 9px 32px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px #e5ffcc8d;
+    transition: background .21s, color .19s;
+    text-decoration: none;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    display: inline-block;
+  }
+  .game-btn:hover {
+    background: linear-gradient(90deg,#ffd800 0,#bfffa8 100%);
+    color: #1e6c19;
+  }
   @media (max-width: 900px) {
-    .developers { gap: 22px; }
-    .dev-card{ width: 85vw;}
-    .main-content{padding: 21px 5px;}
+    .developers, .game-blocks { gap: 22px; }
+    .dev-card, .game-block{ width: 85vw;}
+    .main-content, .game-content {padding: 21px 5px;}
   }
   @media (max-width: 650px){
-    .developers{flex-direction:column;align-items:center;}
-    .dev-card{ width: 96vw;}
+    .developers, .game-blocks{flex-direction:column;align-items:center;}
+    .dev-card, .game-block{ width: 96vw;}
     .navbar { padding: 0 12px;}
     .navbar-title{font-size:1.3em;}
   }
@@ -252,7 +297,7 @@
 <body>
   <!-- Navbar -->
   <nav class="navbar">
-    <span class="navbar-title">UTSUKUSHII.id</span>
+    <span class="navbar-title" style="cursor:pointer;" onclick="scrollToSection('profil')">UTSUKUSHII.id</span>
     <div class="navbar-menu">
       <button class="menu-btn" id="menuBtn">&#9776;</button>
     </div>
@@ -262,12 +307,12 @@
     <button class="close-btn" id="closeMenu">&times;</button>
     <ul>
       <li onclick="scrollToSection('profil')">Profil Developer</li>
-      <li onclick="window.location.href='game.html'">Game</li>
-      <li onclick="window.location.href='galeri.html'">Galeri Game</li>
+      <li onclick="scrollToSection('game')">Game</li>
+      <!-- <li onclick="window.location.href='galeri.html'">Galeri Game</li> -->
     </ul>
   </aside>
 
-  <!-- Main Content -->
+  <!-- Profil Developer -->
   <section class="main-content" id="profil">
     <h2 style="color: #228B22; font-size: 2em; letter-spacing: 1px;
         text-shadow: 1px 2px #ffd800;">Profil Developer</h2>
@@ -295,7 +340,7 @@
       </div>
     </div>
   </section>
-  <!-- Biodata Modal -->
+  <!-- Modal Biodata -->
   <div class="dev-modal-bg" id="modalDev1">
     <div class="dev-modal">
       <button class="close-modal" onclick="closeModal('dev1')">&times;</button>
@@ -335,6 +380,54 @@
       </ul>
     </div>
   </div>
+  
+  <!-- ZONA GAME -->
+  <section class="game-content" id="game">
+    <h2 style="color: #228B22; font-size: 2em; letter-spacing: 1px;
+        text-shadow: 1px 2px #00ff77; text-align: center;">Game Buatan Kami</h2>
+    <div class="game-blocks">
+
+      <!-- Game 1 -->
+      <div class="game-block">
+        <div class="game-title">Lumpat, Rawr!</div>
+        <div class="game-desc">Halo! Ini adalah Game Buatan Kami, Have Fun!</div>
+        <a class="game-btn" href="https://link-game-apel.com" target="_blank">Mainkan Game</a>
+      </div>
+        <iframe
+          src="https://scratch.mit.edu/projects/1234608434/embed"
+          allowtransparency="true"
+          width="485"
+          height="402"
+          frameborder="0"
+          scrolling="no"
+          allowfullscreen>
+        </iframe>
+
+      <!-- Game 2 -->
+      <div class="game-block">
+        <div class="game-title">Hiu Lapar 😿</div>
+        <div class="game-desc">Ini adalah Game Kedua Buatan Kami!</div>
+        <a class="game-btn" href="https://link-game-tebakkata.com" target="_blank">Mainkan Game</a>
+      </div>
+        <iframe
+          src="https://scratch.mit.edu/projects/1244085208/embed"
+          allowtransparency="true"
+          width="485"
+          height="402"
+          frameborder="0"
+          scrolling="no"
+          allowfullscreen>
+        </iframe>
+
+      <!-- Game 3 -->
+      <div class="game-block">
+        <div class="game-title">iClick!</div>
+        <div class="game-desc">Ini adalah Game Ketiga Buatan Kami, Selamat Bersenang-senang! Bantu karakter berlari dan hindari rintangan sebanyak mungkin!</div>
+        <a class="game-btn" href="Clicker.html" target="_blank">Mainkan Game</a>
+      </div>
+    </div>
+  </section>
+
   <script>
     // Navbar Menu
     const menuBtn = document.getElementById('menuBtn');
@@ -346,9 +439,8 @@
     window.onclick = (e) => {
       if(e.target.classList.contains('side-menu')) sideMenu.classList.remove('open');
     }
-    // Smooth scroll
     function scrollToSection(sectionId) {
-      document.getElementById(sectionId).scrollIntoView({behavior: 'smooth'});
+      document.getElementById(sectionId).scrollIntoView({behavior:"smooth"});
       sideMenu.classList.remove('open');
     }
     // Modal Biodata Developer

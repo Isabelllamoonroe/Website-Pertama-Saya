@@ -4,7 +4,7 @@ body {
     min-height: 100vh;
     background: linear-gradient(135deg, #d5ffdb 0%, #ffffd2 40%, #fffde4 75%, #fff98d 100%);
   }
-  /* Navbar Sticky */
+    /* Navbar */
   .navbar {
     position: sticky;
     top: 0;

@@ -1,0 +1,77 @@
+.game-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 18px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 36px;
+    }
+    .game-blocks {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      justify-content: center;
+      width: 100%;
+    }
+    .game-block {
+      background: linear-gradient(135deg, #bdffce 0%, #fffed9 100%);
+      border-radius: 26px;
+      box-shadow: 0 6px 38px #a3e58536;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 310px;
+      padding: 36px 16px 30px 16px;
+      transition: transform .22s cubic-bezier(.43,.06,.34,1.1), box-shadow .22s;
+      cursor: pointer;
+    }
+    .game-block:hover {
+      transform: scale(1.075);
+      box-shadow: 0 12px 44px #8fd17038;
+      background: linear-gradient(135deg, #98ffb3 0%, #fffacd 100%);
+    }
+    .game-title {
+      font-size: 1.45em;
+      font-weight: bold;
+      color: #228B22;
+      margin-bottom: 16px;
+      letter-spacing: 1px;
+      text-shadow: 1px 2px #ffd800;
+    }
+    .game-desc {
+      font-size: 1.08em;
+      color: #206610;
+      margin-bottom: 22px;
+      text-align: center;
+    }
+    .game-btn {
+      background: linear-gradient(90deg,#bfffa8 0,#ffd800 100%);
+      color: #228B22;
+      border: none;
+      border-radius: 18px;
+      font-weight: bold;
+      font-size: 1.03em;
+      padding: 9px 32px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #e5ffcc8d;
+      transition: background .21s, color .19s;
+      text-decoration: none;
+      margin-top: 6px;
+      margin-bottom: 2px;
+      display: inline-block;
+    }
+    .game-btn:hover {
+      background: linear-gradient(90deg,#ffd800 0,#bfffa8 100%);
+      color: #1e6c19;
+    }
+    @media (max-width: 900px) {
+      .game-blocks { gap: 22px; }
+      .game-block{ width: 85vw;}
+      .game-content{padding: 21px 5px;}
+    }
+    @media (max-width: 650px){
+      .game-blocks{flex-direction:column;align-items:center;}
+      .game-block{ width: 96vw;}
+    }

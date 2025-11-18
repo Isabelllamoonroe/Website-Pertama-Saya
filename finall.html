@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Game Playground</title>
+
+  <!-- STYLE AMAN TANPA ERROR -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Comic Neue','Comic Sans MS',sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg,#d5ffdb 0%,#ffffd2 40%,#fffde4 75%,#fff98d 100%);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg,#abffab 0%,#fffcae 80%);
+      box-shadow: 0 2px 12px #d6f88859;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 32px;
+      height: 64px;
+    }
+
+    .navbar-title {
+      cursor: pointer;
+      font-size: 2em;
+      font-weight: 700;
+      color: #228B22;
+    }
+
+    .menu-btn {
+      font-size: 2em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #228B22;
+    }
+
+    /* SIDEBAR */
+    .side-menu {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: 260px;
+      height: 100vh;
+      background: linear-gradient(135deg,#bfffa8 0%,#fff296 100%);
+      transform: translateX(110%);
+      transition: .3s;
+      z-index: 200;
+      padding: 40px 18px;
+    }
+
+    .side-menu.open { transform: translateX(0); }
+
+    .close-btn {
+      font-size: 2em;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #228B22;
+      margin-bottom: 20px;
+    }
+
+    .side-menu ul { padding: 0; list-style: none; }
+
+    .side-menu li {
+      margin-bottom: 22px;
+      font-size: 1.2em;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* CARD, GAME, MODAL TETAP SAMA (AMANN) */
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <span class="navbar-title" onclick="scrollToSection('profil')">UTSUKUSHII.id</span>
+    <button id="menuBtn" class="menu-btn">&#9776;</button>
+  </nav>
+
+  <!-- SIDEBAR -->
+  <aside id="sideMenu" class="side-menu">
+    <button id="closeMenu" class="close-btn">&times;</button>
+    <ul>
+      <li onclick="scrollToSection('profil')">Profil Developer</li>
+      <li onclick="scrollToSection('game')">Game</li>
+    </ul>
+  </aside>
+
+  <!-- Developer Section (dipersingkat untuk fokus ke error) -->
+  <section id="profil" style="padding:50px; text-align:center;">
+    <h2>Profil Developer</h2>
+  </section>
+
+  <!-- Game Section -->
+  <section id="game" style="padding:50px; text-align:center;">
+    <h2>Game Buatan Kami</h2>
+  </section>
+
+  <!-- SCRIPT TANPA ERROR -->
+  <script>
+    // Ambil elemen 
+    const menuBtn = document.getElementById('menuBtn');
+    const sideMenu = document.getElementById('sideMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    // Buka Sidebar
+    menuBtn.addEventListener('click', () => {
+      sideMenu.classList.add('open');
+    });
+
+    // Tutup Sidebar
+    closeMenu.addEventListener('click', () => {
+      sideMenu.classList.remove('open');
+    });
+
+    // Scroll ke section
+    function scrollToSection(id) {
+      const section = document.getElementById(id);
+      if (!section) return;
+      section.scrollIntoView({ behavior: 'smooth' });
+      sideMenu.classList.remove('open');
+    }
+  </script>
+
+</body>
+</html>

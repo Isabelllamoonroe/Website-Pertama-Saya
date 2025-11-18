@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Pukul Ohim!</title>
+        <style>
+    body {
+      background: linear-gradient(135deg, #eaffea 0%, #ffffc8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      margin-top: 32px;
+      font-size: 2.45em;
+      color: #3c7e27;
+      text-shadow: 1px 2px 0px #ffeb79;
+      letter-spacing: 2px;
+    }
+    .game-panel {
+      background: #dfffbe;
+      border-radius: 22px;
+      box-shadow: 0px 8px 38px #c1e4ab5a;
+      margin-top: 24px;
+      padding: 22px 34px 30px 34px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 340px;
+    }
+    .score-timer {
+      display: flex;
+      justify-content: space-between;
+      width: 280px;
+      font-size: 1.35em;
+      color: #285a10;
+      margin-bottom: 12px;
+      gap: 22px;
+    }
+    .mole-field {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(2, 100px);
+      gap: 16px;
+      margin: 24px 0 16px 0;
+    }
+    .hole {
+      background: radial-gradient(circle, #ffe88d 65%, #b2f2a4 100%);
+      border: 4px solid #b2f2a4;
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+      width: 100px; height: 100px;
+      cursor: pointer;
+      box-shadow: 0 4px 22px #eaffea90;
+      transition: box-shadow .2s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .hole.active {
+      box-shadow: 0 8px 44px #c6ffc56d;
+      border-color: #ffe88d;
+    }
+    .mole-img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 4px solid #ffd800;
+      background: #fff;
+      position: absolute;
+      left: 50%; transform: translateX(-50%) translateY(15px);
+      bottom: 0;
+      box-shadow: 0 2px 10px #b2f2a4bb;
+      animation: molePop 0.35s cubic-bezier(.43,.06,.34,1.4);
+    }
+    @keyframes molePop {
+      from { transform: translateX(-50%) translateY(50px); opacity: .3;}
+      to { transform: translateX(-50%) translateY(15px); opacity: 1;}
+    }
+    .btn-restart, .btn-start {
+      padding: 7px 32px;
+      background: linear-gradient(90deg, #b2f2a4 0%, #ffd800 100%);
+      color: #3c7e27;
+      border: none;
+      border-radius: 16px;
+      font-weight: bold;
+      font-size: 1.14em;
+      cursor: pointer;
+      box-shadow: 0 2px 10px #eaffea8d;
+      margin-top: 20px;
+      transition: background .2s, color .2s;
+    }
+    .btn-restart:hover, .btn-start:hover {
+      background: linear-gradient(90deg, #ffd800 0%, #b2f2a4 100%);
+      color: #285a10;
+    }
+    .end-game {
+      font-size: 1.45em;
+      color: #b77f2a;
+      margin-top: 10px;
+      font-weight: bold;
+      text-align: center;
+      padding: 7px 0 0px 0;
+      letter-spacing: 1px;
+      background: #fffedd;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Pukul Ohim!</h1>
+  <div class="game-panel">
+    <div class="score-timer">
+      <span id="score">Skor: 0</span>
+      <span id="timer">Waktu: 30</span>
+    </div>
+    <div class="mole-field" id="moleField">
+      <!-- 6 hole akan dibuat dengan JS -->
+    </div>
+    <div id="endGameMsg" class="end-game" style="display:none;"></div>
+    <button class="btn-start" id="startBtn">Mulai</button>
+    <button class="btn-restart" id="restartBtn" style="display:none;">Main Lagi!</button>
+    <div style="margin-top:19px; color:#82b732; font-size:1em;">Klik Tikus yang Muncul Sebanyak-banyaknya!</div>
+  </div>
+  <script>
+    const numHoles = 6;
+    let score = 0;
+    let timeLeft = 30;
+    let gameActive = false;
+    let moleTimer, countdownTimer;
+    let molePos = -1;
+    let moleInterval = 450; // Percepatan
+
+    // Buat field/mole holes
+    const moleField = document.getElementById('moleField');
+    for(let i=0; i<numHoles; i++){
+      const div = document.createElement('div');
+      div.className = 'hole';
+      div.dataset.idx = i;
+      moleField.appendChild(div);
+    }
+    const holes = document.querySelectorAll('.hole');
+
+    function updateScore() {
+      document.getElementById('score').textContent = "Skor: " + score;
+    }
+    function updateTimer() {
+      document.getElementById('timer').textContent = "Waktu: " + timeLeft;
+    }
+
+    // Mole image kosong, kamu bisa isi src sesuai foto di foldermu!
+    function showMole() {
+      holes.forEach((hole, idx) => {
+        hole.classList.remove('active');
+        hole.innerHTML = '';
+      });
+      if (!gameActive) return;
+      molePos = Math.floor(Math.random() * numHoles);
+      const mole = document.createElement('img');
+      mole.className = 'mole-img';
+      // Ganti src di bawah dengan foto kamu, misal: images/mole.png
+      img.src = "Foto/ohim.png"; 
+      mole.alt = "Mole";
+      holes[molePos].classList.add('active');
+      holes[molePos].appendChild(mole);
+      holes[molePos].onclick = function() {
+        if(!gameActive) return;
+        score++;
+        updateScore();
+        holes[molePos].classList.remove('active');
+        holes[molePos].innerHTML = '';
+      };
+    }
+
+    function runMoleLoop() {
+      if (!gameActive) return;
+      showMole();
+      moleTimer = setTimeout(runMoleLoop, moleInterval);
+    }
+
+    function startGame() {
+      score = 0;
+      timeLeft = 30;
+      gameActive = true;
+      updateScore();
+      updateTimer();
+      document.getElementById('endGameMsg').style.display = 'none';
+      document.getElementById('restartBtn').style.display = 'none';
+      document.getElementById('startBtn').style.display = 'none';
+      holes.forEach((hole) => {hole.classList.remove('active'); hole.innerHTML=''; hole.onclick=null;});
+      runMoleLoop();
+      countdownTimer = setInterval(()=>{
+        timeLeft--;
+        updateTimer();
+        if(timeLeft <= 0){
+          endGame();
+        }
+      }, 1000);
+    }
+
+    function endGame() {
+      gameActive = false;
+      clearTimeout(moleTimer);
+      clearInterval(countdownTimer);
+      holes.forEach((hole) => {hole.classList.remove('active'); hole.innerHTML=''; hole.onclick = null;});
+      document.getElementById('endGameMsg').innerHTML =
+        "Waktu selesai!<br>Skor akhir: <b>" + score + "</b>";
+      document.getElementById('endGameMsg').style.display = '';
+      document.getElementById('restartBtn').style.display = '';
+      document.getElementById('startBtn').style.display = '';
+    }
+
+    document.getElementById('restartBtn').onclick = () => {
+      document.getElementById('endGameMsg').style.display = 'none';
+      startGame();
+    };
+    document.getElementById('startBtn').onclick = startGame;
+        </script>
+</body>
+</html>

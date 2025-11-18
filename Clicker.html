@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iClick!</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0a089b, #fd93dd);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #c5b3b3;
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .info {
+      font-size: 1.1rem;
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    #gameArea {
+      width: 220px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #b48dd899;
+      border-radius: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.5rem;
+      color: #333;
+      transition: transform 0.1s ease;
+    }
+
+    #gameArea.active {
+      background: #b03aae;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 25px;
+      background: #b365b7;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      color: white;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #580563;
+    }
+  </style>
+</head>
+<body>
+  <h1>iClick!</h1>
+  <div class="info">Seberapa Getar Jari Anda?</div>
+
+  <div id="gameArea">Klik Mulai</div>
+
+  <button id="startBtn">Mulai Game</button>
+
+  <script>
+    const gameArea = document.getElementById("gameArea");
+    const startBtn = document.getElementById("startBtn");
+    const info = document.querySelector(".info");
+
+    let score = 0;
+    let timeLeft = 15;
+    let gameActive = false;
+    let timer;
+
+    function startGame() {
+      score = 0;
+      timeLeft = 15;
+      gameActive = true;
+      gameArea.textContent = "Klik!";
+      info.textContent = `Waktu tersisa: 15 detik`;
+      startBtn.disabled = true;
+
+      timer = setInterval(() => {
+        timeLeft--;
+        info.textContent = `Waktu tersisa: ${timeLeft} detik`;
+        if (timeLeft <= 0) endGame();
+      }, 1000);
+    }
+
+    function endGame() {
+      clearInterval(timer);
+      gameActive = false;
+      startBtn.disabled = false;
+      gameArea.textContent = `Skor: ${score}`;
+      info.textContent = "Klik 'Mulai Game' untuk bermain lagi!";
+    }
+
+    gameArea.addEventListener("mousedown", () => {
+      if (!gameActive) return;
+      gameArea.classList.add("active");
+      score++;
+      gameArea.textContent = score;
+    });
+
+    gameArea.addEventListener("mouseup", () => {
+      gameArea.classList.remove("active");
+    });
+
+    startBtn.addEventListener("click", startGame);
+  </script>
+</body>
+</html>
